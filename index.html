@@ -5,33 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(44, 36, 16);
+            margin: 0px;
+        }
+        h1{
+            color: rgb(66, 153, 153);
+            text-shadow: 1px 1px bisque;
+            text-align: center;
+        }
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px 50px;
+            margin: 0px;
+            border: 5px solid rgb(29, 29, 29);
+
+        }
+        p{
+            display: block;
+            background-color: rgb(226, 152, 62);
+            border: 1px solid rgb(8, 8, 8);
+            text-align: center;
+            padding: 2px;
+
+        }
+    </style>
 </head>
 <body>
+    <h1>24HR Crypto Data</h1>
     <div id="main">
-
+       
     </div>
     <script>
-             let fetchrs = fetch("https://api.coindesk.com/v1/bpi/currentprice.json");
+             let fetchrs = fetch("https://api2.binance.com/api/v3/ticker/24hr");
              let dat = fetchrs.then(res=>res.json());
+             console.log(dat);
              let dattav= dat.then(data=>{console.log(data); displaydata(data);});
-             //console.log(dattav);
+             console.log(dattav);
             function displaydata(data){
-               
-                for(let key in data){
-                    let value = data[key];
-                   // console.log(key +"-"+value);
-                    for(let key in value){
-                        let value1 = value[key];
-                        //console.log(value1);
-                        let divi= document.getElementById("main");
-                     let para= document.createElement("p");
-                     para.innerHTML= value1;
-                     divi.appendChild(para);
-                }
+             let c = data;
+             for(var i =0;i<c.length;i++){
+             let b = c[i].symbol;
+             let d = c[i].priceChangePercent;
+
+            //  console.log(b);
+            //  console.log(d);
+             let parag = document.getElementById("main");
+             let para = document.createElement('p');
+             para.innerHTML = b + "___________"+d;
+             parag.appendChild(para);}
+
                     }
                    
                
-            }
+            
            
 
     </script>
