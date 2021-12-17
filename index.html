@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+
+    </div>
+    <script>
+             let fetchrs = fetch("https://api.coindesk.com/v1/bpi/currentprice.json");
+             let dat = fetchrs.then(res=>res.json());
+             let dattav= dat.then(data=>{console.log(data); displaydata(data);});
+             //console.log(dattav);
+            function displaydata(data){
+               
+                for(let key in data){
+                    let value = data[key];
+                   // console.log(key +"-"+value);
+                    for(let key in value){
+                        let value1 = value[key];
+                        //console.log(value1);
+                        let divi= document.getElementById("main");
+                     let para= document.createElement("p");
+                     para.innerHTML= value1;
+                     divi.appendChild(para);
+                }
+                    }
+                   
+               
+            }
+           
+
+    </script>
+</body>
+</html>
